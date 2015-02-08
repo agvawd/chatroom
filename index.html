@@ -4,7 +4,9 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Chat Room</title>
   </head>
+
   <body ng-controller="mainCtrl">
 
     <div class="main-container">
@@ -12,9 +14,19 @@
       <form ng-submit="postParseData()">
         <input class="form-control text-box" type="text" ng-model="message" placeholder="Message">
       </form>
+        <input placeholder="Filter Messages" class="filterMsg" ng-model="filtMsg">
+
+      <form class="text-box">
+        <input placeholder="Add new chat" ng-model="addChatter">
+        <select ng-model="mySelect" ng-options="a as a for a in accounts">
+         <option selected value=''></option>
+        </select>
+        <button ng-click="changeChat()" class="newChat">Change Chat</button>
+        <button ng-click="addChat()" class="newChat">Add User</button>
+      </form>
 
       <div class="messages-container">
-        <p ng-repeat="message in messages"> message: {{message.text}}  <span class="badge">{{formatDate(message.createdAt)}}</span>
+        <p ng-repeat="message in messages | filter: filtMsg" ng-hide="message.text === '' || message.text === undefinded"> message: {{message.text}} <span class="badge">{{formatDate(message.createdAt)}}</span>
         </p>
       </div>
     </div>
