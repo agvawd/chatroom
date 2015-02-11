@@ -44,7 +44,6 @@ app.controller('mainCtrl', function($scope, parseService){
   }
 
   $scope.addChat = function() {
-    debugger;
     if($scope.addChatter === "" || $scope.addChatter === undefined) {
 
     }
